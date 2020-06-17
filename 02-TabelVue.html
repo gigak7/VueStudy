@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <style>
+            .add {
+                color: black;
+                border: 1px;
+            }
+            .tb {
+                border: 1px;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <div class="add">
+                品牌名称
+                <input type="text">
+                <input type="button" value="添加">
+            </div>
+            <div class="add">
+                品牌名称：
+                <input type="text" placeholder="请输入搜素条件">
+            </div>
+            <div>
+                <table class="tb">
+                    <tr>
+                        <th>编号</th>
+                        <th>名称</th>
+                        <th>创立时间</th>
+                        <th>操作</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>LV</td>
+                        <td>2008-12-12</td>
+                        <td>
+                            <a href="#">删除</a>
+                        </td>
+                    </tr>
+                    <tr><td colspan="4">没有品牌数据</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <script src="./vue.js"></script>
+        <script>
+             var vm = new Vue({
+                el:'#app',
+                data:{
+                },
+                methods:{
+                }
+            });
+        </script>
+    </body>
+</html>

@@ -10,9 +10,20 @@
             <button @click.once="fn6($event)">按鈕6</button>
 
             <div id="for">
+                <!-- loop in list -->
                 <ul>
                     <li v-for="(item,index) in list">{{ item }}+++{{ index }}</li>
                 </ul>
+                <!-- loop in object -->
+                <ul>
+                    <li v-for="(prop,key) in one">{{key}}---{{prop}}</li>
+                </ul>
+                
+            </div>
+
+            <div id="model">
+                {{msg}}
+                <input type="text" v-model="msg">
             </div>
         </div>
         
@@ -23,7 +34,13 @@
                 data:{
                     msg:'後台返回的數據',
                     count: 1,
-                    list: ['apple','pear','orange']
+                    list: ['apple','pear','orange'],
+                    one:{
+                        id:222,
+                        name:'Andy',
+                        age:28,
+                        height:170
+                    }
                 },
                 methods:{
                     fn1:function(){
