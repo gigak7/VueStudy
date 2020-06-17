@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    </head>
+    <body>
+        <div id="app">
+            <p>{{ fn5() }}</p>
+            <button @click="fn5()">按鈕</button>
+            <button @click.once="fn6($event)">按鈕6</button>
+
+            <div id="for">
+                <ul>
+                    <li v-for="(item,index) in list">{{ item }}+++{{ index }}</li>
+                </ul>
+            </div>
+        </div>
+        
+        <script src="./vue.js"></script>
+        <script>
+             var vm = new Vue({
+                el:'#app',
+                data:{
+                    msg:'後台返回的數據',
+                    count: 1,
+                    list: ['apple','pear','orange']
+                },
+                methods:{
+                    fn1:function(){
+                        console.log('fn1--------');
+                    },
+                    fn4: () => {
+                        console.log('fn4---------');
+                    },
+                    fn5(){
+                        console.log('fn5');
+                    },
+                    fn6(e){
+                        console.log(e);
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>
