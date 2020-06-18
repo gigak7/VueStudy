@@ -127,18 +127,18 @@
 
             computed: {
                 matchedItems(){
+                    //方法1：ES6新API-startsWith
                     return this.items.filter((item)=>{
                         return item.name.startsWith(this.search); 
                     })
 
 
-                    // this.items.forEach(element => {
-                    //     if (element.name == this.search){
+                    // //方法2：遍歷數組
+                    // return this.items.forEach(element => {
+                    //     if (item.name.startsWith(this.search)){
                     //         return element;
                     //     }
-                    // });
-
-                    // return this.items;
+                    // })
                 }
             }
         });
