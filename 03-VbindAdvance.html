@@ -1,0 +1,92 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <style>
+            .active {
+                color:chartreuse;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <p :class="{active:a,left:b}">内容</p>
+            <p :class="obj">内容2</p>
+            <p :style="{fontSize:fontsize,color:color}">內容3</p>
+            <p :style="[fontSize,color]">內容4</p>
+            <p :class="{active:isActive}">切換類名</p>
+            <button @click="isActive = !isActive">OK</button>
+            <input type="text" @input="cfn($event)" :value="msg">
+            {{msg}}
+            <textarea v-model="area"></textarea>
+            {{area}}
+            
+            <input type="checkbox" v-model="check">
+            {{check}}
+            <input type="checkbox" value="a" v-model="checklist">AAA
+            <input type="checkbox" value="b" v-model="checklist">BBB
+            <input type="checkbox" value="c" v-model="checklist">CCC
+            <input type="checkbox" value="d" v-model="checklist">DDD
+            {{checklist}}
+            <input type="radio" value="choosed" v-model="choose">
+            <input type="radio" value="unchoosed" v-model="choose">
+            {{choose}}
+            <select v-model="selected">
+                <option disabled>請選擇</option>
+                <option value='3'>USA</option>
+                <option value='1'>China</option>
+                <option value='2'>Japan</option>
+            </select>
+            {{selected}}
+            <select v-model="selectedM" multiple>
+                <option disabled>請選擇</option>
+                <option value='A'>武漢</option>
+                <option value='B'>澳門</option>
+                <option value='C'>北京</option>
+            </select>
+            {{selectedM}}
+        </div>
+        
+        <script src="./vue.js"></script>
+        <script src="./moment.js"></script>
+        <script>
+            new Vue({
+                el:'#app',
+                data:{
+                    a:true,
+                    b:true,
+                    obj:{
+                        active:true,
+                        left:false
+                    },
+                    fontsize:'30px',
+                    color:'red',
+                    fontSize:{
+                        fontSize:'20px',
+                    },
+                    color:{
+                        color:'blue'
+                    },
+                    isActive: true,
+                    msg: 'abc',
+                    area: 'xyz',
+                    check:true,
+                    checklist:['a','b','c','d'],
+                    choose:'',
+                    selected:'',
+                    selectedM:[]
+                },
+                methods:{
+                    cfn(xa){
+                        this.msg = xa.target.value;
+                    }
+                },
+                filters:{
+                    formatDate(v){
+                        return 
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>

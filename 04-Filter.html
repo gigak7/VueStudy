@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    </head>
+    <body>
+        <div id="app">
+            <p>{{msg}}</p>
+            <p>{{msg | toUpper}}</p>
+            <p>{{msg | Upper}}</p>
+            <p>{{msg | toUpper | Upper}}</p>
+            <p>{{count|add('MOP')}}</p>
+            <input type="text" v-model="msg">
+        </div>
+        
+        <script src="./vue.js"></script>
+        <script>
+            //全局過濾器
+            Vue.filter('toUpper',(v)=>{
+                if(!v) return '';
+                return v.charAt(0).toUpperCase() + v.substr(1);
+            })
+            Vue.filter('Upper',(v)=>{
+                return v + 'xyz';
+            })
+            new Vue({
+                el:'#app',
+                data:{
+                    msg:'',
+                    count:123
+                },
+                methods:{
+                    
+                },
+                //局部過濾器
+                //傳參數
+                filters:{
+                    add(v,y){
+                        return '$' + v + y;
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>
