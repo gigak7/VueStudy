@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    </head>
+    <body>
+        <div id="app">
+            <input type="text" v-test>
+            <input type="text" v-testlocal>
+        </div>
+        
+        <script src="./vue.js"></script>
+        <script>
+            Vue.directive('test',{
+                //el是頁面中的調用者
+                inserted(el){
+                    el.focus();
+                }
+            })
+            new Vue({
+                el:'#app',
+                data: {
+
+                },
+                methods: {
+                    
+                },
+                directives: {
+                    testlocal:{
+                        inserted(el){
+                            console.log(el);
+                            el.focus();
+                        }
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>
