@@ -51,7 +51,7 @@
                         <th>操作</th>
                     </tr>
                     <tr v-for="(item,index) in matchedItems" :key="index">
-                        <td>{{index+1}}</td>
+                        <td>{{item.id}}</td>
                         <td>{{item.name}}</td>
                         <td>{{item.time|formatDate}}</td>
                         <td>
@@ -65,31 +65,44 @@
 
         <script src="./vue.js"></script>
         <script src="./moment.js"></script>
+        <script src="./axios.min.js"></script>
         <script>
-            var items = [{
-                name:'TCL',
-                time:new Date()
-            },{
-                name:'小米',
-                time:new Date()
-            },{
-                name:'OPPO',
-                time:new Date()
-            }];
+            
+            // var items = [{
+            //     name:'TCL',
+            //     time:new Date()
+            // },{
+            //     name:'小米',
+            //     time:new Date()
+            // },{
+            //     name:'OPPO',
+            //     time:new Date()
+            // }];
 
             var vm = new Vue({
             el:'#app',
             data:{
                 //ES6可简写
-                items,
+                items:[],
                 itemname:'',
                 search:''
             },
             mounted() {
+                this.getAllBrands();
                 // console.log(this.$refs);
                 return this.$refs.brandname.focus();
             },
             methods:{
+                getAllBrands(){
+                    axios.get('http://localhost:3333/brands').then((res)=>{
+                        console.log(res)
+                        const {status,data} = res
+                        if (status===200) {
+                            this.items = res.data
+                        }
+                    })
+                },
+
                 addItem(){
                     ////从头部添加元素
                     // this.items.unshift({
