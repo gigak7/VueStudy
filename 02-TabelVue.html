@@ -50,12 +50,12 @@
                         <th>创立时间</th>
                         <th>操作</th>
                     </tr>
-                    <tr v-for="(item,index) in matchedItems" :key="index">
+                    <tr v-for="(item,index) in items" :key="index">
                         <td>{{item.id}}</td>
                         <td>{{item.name}}</td>
                         <td>{{item.time|formatDate}}</td>
                         <td>
-                            <a href="#" @click.prevent="deleteItem(index)">删除</a>
+                            <a href="#" @click.prevent="deleteItem(item.id)">删除</a>
                         </td>
                     </tr>
                     <tr v-if="items.length === 0"><td colspan="4">没有品牌数据</td></tr>
@@ -115,11 +115,30 @@
                         name:this.itemname,
                         time:new Date()
                     })
+
+                    axios.post('http://localhost:3333/brands', {
+                        name: this.itemname,
+                        time: new Date()
+                    }).then((res)=>{
+                        const {status,data} = res
+
+                        if(status == 201) {
+                            this.getAllBrands()
+                        }
+
+                    })
                 },
-                deleteItem(i){
-                    if(confirm('Sure?')){
-                        this.items.splice(i,1);
-                    }
+                deleteItem(ID){
+                    // if(confirm('Sure?')){
+                    //     this.items.splice(i,1);
+                    // }
+                    axios.delete('http://localhost:3333/brands/'+ID)
+                    .then((res)=>{
+                        const {status,data}= res
+                        if (status == 200) {
+                            this.getAllBrands()
+                        }
+                    })
                     
                 }
             },
@@ -153,6 +172,17 @@
                     //     }
                     // })
                 }
+            },
+
+            watch: {
+                search(newVal,oldVal){
+                        axios
+                        .get('http://localhost:3333/brands?name_like='+ newVal)
+                        .then((res)=>{
+                            this.items = res.data
+                        })
+                }
+                
             }
         });
         </script>

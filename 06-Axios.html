@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    </head>
+    <body>
+        <div id="app">
+            
+        </div>
+        
+        
+        <script src="./axios.min.js"></script>
+        <script>
+            axios
+                .get('http://localhost:3333/brands')
+                .then((res)=>{
+                    const {status,data} = res;
+                    if (status == 200) {
+                        console.log(data);
+                    }
+                })
+                .catch((err)=>{
+
+                })
+
+            // axios.post('http://localhost:3333/brands', {
+            //     name:'abc',
+            //     date:new Date()
+            // })
+            // .then((res)=>{
+            //     console.log(res.status)
+            // })
+
+            // axios.put('http://localhost:3333/brands/4', {
+            //     name:'xxxxx'
+            // })
+            // .then((res)=>{
+            //     console.log(res.status)
+            // })
+
+            axios.delete('http://localhost:3333/brands/5')
+            .then((res)=>{
+                console.log(res.status)
+            })
+        </script>
+    </body>
+</html>

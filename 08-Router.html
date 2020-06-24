@@ -1,0 +1,77 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <style>
+            .router-link-exact-active.router-link-active{
+                color:red;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <router-link to="/basketball" tag="div">藍球</router-link>
+            <router-link to="/soccer">足球</router-link>
+            <router-link to="/tabletennis">乒乓球</router-link>
+            <button @click="changeUrl()">音樂</button>
+            <router-view>
+
+            </router-view>
+        </div>
+        
+        <script src="./vue.js"></script>
+        <script src="./vue-router.js"></script>
+        <script>
+            var Ball = {
+                template: "<div>ball component {{$route.params.id}}</div>"
+            }
+            var xError = {
+                template: "<span>!!!ERROR!!!</span>"
+            }
+            var test = {
+                template: "<div>test</div>"
+            }
+            var routes = [
+                {
+                    path:'/:id',
+                    component:Ball
+                },
+                {
+                    path:'/',
+                    redirect:{
+                        name:'error'
+                    }
+                },
+                {
+                    name:'error',
+                    path:'/error',
+                    component:xError
+                },
+                {
+                    path:"test",
+                    component:test
+                },
+                {
+                    path:"/*",
+                    component:xError
+                }
+            ]
+            var router = new VueRouter({
+                routes
+            })
+            new Vue({
+                el:'#app',
+                router,
+                data:{
+
+                },
+                methods:{
+                    changeUrl(){
+                        //編程式導航
+                        this.$router.push({path:'test'})
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>

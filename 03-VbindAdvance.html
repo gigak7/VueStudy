@@ -48,7 +48,6 @@
         </div>
         
         <script src="./vue.js"></script>
-        <script src="./moment.js"></script>
         <script>
             new Vue({
                 el:'#app',
@@ -79,11 +78,6 @@
                 methods:{
                     cfn(xa){
                         this.msg = xa.target.value;
-                    }
-                },
-                filters:{
-                    formatDate(v){
-                        return 
                     }
                 }
             });

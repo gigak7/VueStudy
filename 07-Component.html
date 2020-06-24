@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    </head>
+    <body>
+        <div id="app">
+            <child-a :a="msg"></child-a>
+        </div>
+        
+        <script src="./vue.js"></script>
+        <script>
+            Vue.component('span-btn', {
+                template: '<div><span>{{count}}</span><button @click="changeCount">按鈕</button><br></div>',
+                data() {
+                    return {
+                        count: 0
+                    }
+                },
+                methods: {
+                    changeCount() {
+                        this.count++
+                    }
+                }
+            })
+
+            Vue.component('child-a',{
+                template: '<div>Child-A子組件--{{a}}</div>',
+                props:['a']
+            })
+
+            new Vue({
+                el:'#app',
+                data:{
+                    msg:'我是父組件的數據'
+                },
+                methods:{
+                    
+                }
+            });
+        </script>
+    </body>
+</html>
